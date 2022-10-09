@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.adminfaces</groupId>
-	<artifactId>admin-starter</artifactId>
+	<groupId>com.github.homeutil</groupId>
+	<artifactId>home-util</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>admin-starter</name>
+	<name>home-util</name>
 
 	<parent>
 		<groupId>org.joinfaces</groupId>
@@ -19,6 +19,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<mojarra.version>2.3.4</mojarra.version>
+		<primefaces.version>8.0</primefaces.version>
+		<adminfaces.version>1.2.0</adminfaces.version>
 	</properties>
     
 	<dependencyManagement>
@@ -26,18 +28,23 @@
 			<dependency>
 				<groupId>com.github.adminfaces</groupId>
 				<artifactId>admin-template</artifactId>
-				<version>1.0.2</version>
+				<version>${adminfaces.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.adminfaces</groupId>
 				<artifactId>admin-theme</artifactId>
-				<version>1.0.2</version>
+				<version>${adminfaces.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.primefaces</groupId>
 				<artifactId>primefaces</artifactId>
-				<version>7.0</version>
+				<version>${primefaces.version}</version>
 			</dependency>
+	        <dependency>
+	            <groupId>org.primefaces.extensions</groupId>
+	            <artifactId>primefaces-extensions</artifactId>
+	            <version>${primefaces.version}</version>
+	        </dependency>	
 		</dependencies>    
 	</dependencyManagement>  
     
@@ -54,6 +61,11 @@
 			<groupId>org.joinfaces</groupId>
 			<artifactId>adminfaces-spring-boot-starter</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <version>1.0</version>
+        </dependency>		
 	</dependencies>
 	<build>
 		<finalName>admin-starter</finalName>

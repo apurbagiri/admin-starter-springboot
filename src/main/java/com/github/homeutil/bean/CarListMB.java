@@ -1,21 +1,26 @@
-package com.github.adminfaces.starter.bean;
+package com.github.homeutil.bean;
 
-import com.github.adminfaces.starter.infra.model.Filter;
-import com.github.adminfaces.starter.model.Car;
-import com.github.adminfaces.starter.service.CarService;
 import com.github.adminfaces.template.exception.BusinessException;
+import com.github.homeutil.infra.model.Filter;
+import com.github.homeutil.model.Car;
+import com.github.homeutil.service.CarService;
+
 import javax.faces.view.ViewScoped;
+
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import static com.github.homeutil.util.Utils.addDetailMessage;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
-import static com.github.adminfaces.starter.util.Utils.addDetailMessage;
 
 /**
  * Created by rmpestano on 12/02/17.
@@ -39,35 +44,55 @@ public class CarListMB implements Serializable {
 
     @PostConstruct
     public void initDataModel() {
-        cars = new LazyDataModel<Car>() {
-            @Override
-            public List<Car> load(int first, int pageSize,
-                                  String sortField, SortOrder sortOrder,
-                                  Map<String, Object> filters) {
-                com.github.adminfaces.starter.infra.model.SortOrder order = null;
-                if (sortOrder != null) {
-                    order = sortOrder.equals(SortOrder.ASCENDING) ? com.github.adminfaces.starter.infra.model.SortOrder.ASCENDING
-                            : sortOrder.equals(SortOrder.DESCENDING) ? com.github.adminfaces.starter.infra.model.SortOrder.DESCENDING
-                            : com.github.adminfaces.starter.infra.model.SortOrder.UNSORTED;
-                }
-                filter.setFirst(first).setPageSize(pageSize)
-                        .setSortField(sortField).setSortOrder(order)
-                        .setParams(filters);
-                List<Car> list = carService.paginate(filter);
-                setRowCount((int) carService.count(filter));
-                return list;
-            }
+//        cars = new LazyDataModel<Car>() {
+//            @Override
+//            public List<Car> load(int first, int pageSize,
+//                                  String sortField, SortOrder sortOrder,
+//                                  Map<String, Object> filters) {
+//                com.github.homeutil.infra.model.SortOrder order = null;
+//                if (sortOrder != null) {
+//                    order = sortOrder.equals(SortOrder.ASCENDING) ? com.github.homeutil.infra.model.SortOrder.ASCENDING
+//                            : sortOrder.equals(SortOrder.DESCENDING) ? com.github.homeutil.infra.model.SortOrder.DESCENDING
+//                            : com.github.homeutil.infra.model.SortOrder.UNSORTED;
+//                }
+//                filter.setFirst(first).setPageSize(pageSize)
+//                        .setSortField(sortField).setSortOrder(order)
+//                        .setParams(filters);
+//                List<Car> list = carService.paginate(filter);
+//                setRowCount((int) carService.count(filter));
+//                return list;
+//            }
+//
+//            @Override
+//            public int getRowCount() {
+//                return super.getRowCount();
+//            }
+//
+//            @Override
+//            public Car getRowData(String key) {
+//                return carService.findById(new Integer(key));
+//            }
+//        };
+    	cars = new LazyDataModel<Car>() {
+    		@Override
+    		public List<Car> load(int first, int pageSize, Map<String, SortMeta> sortBy,
+    				Map<String, FilterMeta> filterBy) {
+    			// TODO Auto-generated method stub
+    			
+    			return null;
+    		}
+    		
+    		@Override
+    		public int getRowCount() {
+    			return super.getRowCount();
+    		}
+    		
+    		@Override
+    		public Car getRowData(String rowKey) {
+    			return carService.findById(new Integer(rowKey));
+    		}
 
-            @Override
-            public int getRowCount() {
-                return super.getRowCount();
-            }
-
-            @Override
-            public Car getRowData(String key) {
-                return carService.findById(new Integer(key));
-            }
-        };
+		};
     }
 
     public void clear() {

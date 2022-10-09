@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.adminfaces.starter.service;
+package com.github.homeutil.service;
 
-import com.github.adminfaces.starter.infra.model.Filter;
-import com.github.adminfaces.starter.infra.model.SortOrder;
-import com.github.adminfaces.starter.model.Car;
 import com.github.adminfaces.template.exception.BusinessException;
+import com.github.homeutil.infra.model.Filter;
+import com.github.homeutil.infra.model.SortOrder;
+import com.github.homeutil.model.Car;
 
 import javax.inject.Inject;
 import java.io.Serializable;

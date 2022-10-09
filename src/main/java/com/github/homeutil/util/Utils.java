@@ -1,7 +1,8 @@
-package com.github.adminfaces.starter.util;
+package com.github.homeutil.util;
 
-import com.github.adminfaces.starter.model.Car;
 import org.omnifaces.util.Messages;
+
+import com.github.homeutil.model.Car;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

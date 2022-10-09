@@ -14,20 +14,27 @@
  * limitations under the License.
  */
 
-package com.github.adminfaces.starter;
+package com.github.homeutil;
 
-import org.springframework.boot.SpringApplication;
+import java.util.List;
+import javax.inject.Inject;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
- /**
+import com.github.homeutil.model.Car;
+import com.github.homeutil.util.Utils;
+
+/**
  * @author rmpestano
  */
-public class AdminBootMain {
+@SpringBootApplication
+public class AdminBootApplication {
+	@Inject
+	private Utils utils;
 
-	protected AdminBootMain() {
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(AdminBootApplication.class, args);
-	}
-
+    @Bean
+    public List<Car> getCars() {
+        return utils.getCars();
+    }
+	
 }
